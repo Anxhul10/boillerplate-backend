@@ -7,10 +7,17 @@ const app = express()
 // 2nd approach
 dotenv.config();
 
-connectDB();
-app.listen(process.env.PORT, ()=>{
-    console.log(`app listening at port ${process.env.PORT}`)
+connectDB()
+.then(()=>{
+    app.listen(process.env.PORT, ()=>{
+        console.log(`port is running at ${process.env.PORT}`)
+    })
 })
+.catch((err)=>{
+    console.log("failed to connect mongo , error :"+err);
+})
+
+
 /*
 1st approach
  # amatuare
